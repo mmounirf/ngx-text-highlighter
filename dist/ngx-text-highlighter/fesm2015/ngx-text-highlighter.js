@@ -1,4 +1,4 @@
-import { Injectable, Pipe, EventEmitter, Component, NgModule, Output, Input, defineInjectable } from '@angular/core';
+import { Injectable, Pipe, EventEmitter, Component, Output, Input, NgModule, defineInjectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
