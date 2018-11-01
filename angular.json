@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "ngx-text-highlighter": {
+      "root": "projects/ngx-text-highlighter",
+      "sourceRoot": "projects/ngx-text-highlighter/src",
+      "projectType": "library",
+      "prefix": "th",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-text-highlighter/tsconfig.lib.json",
+            "project": "projects/ngx-text-highlighter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ngx-text-highlighter/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-text-highlighter/src/test.ts",
+            "tsConfig": "projects/ngx-text-highlighter/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-text-highlighter/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-text-highlighter/tsconfig.lib.json",
+              "projects/ngx-text-highlighter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-text-highlighter-app"
