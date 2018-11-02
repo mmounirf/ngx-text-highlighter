@@ -1,13 +1,19 @@
 .textarea {
   height: 250px;
   overflow: auto;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   padding: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
-  border-radius: 2px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 4px;
   line-height: 2em;
 }
 
 .textarea:focus {
   outline: none;
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block;
+  color: #676767;
 }

@@ -1,5 +1,7 @@
     <div class="textarea"
         (mouseup)="onSelection($event)"
         [attr.contenteditable]="true"
-        (blur)="onTextAreaBlur()">
+        (blur)="onTextAreaBlur()"
+        placeholder="Enter text here..."
+    >
     </div>

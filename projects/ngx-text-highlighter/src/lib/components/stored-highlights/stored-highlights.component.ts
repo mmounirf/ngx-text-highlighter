@@ -8,6 +8,7 @@ import { EventsService } from '../../services/events.service';
 })
 export class StoredHighlightsComponent implements OnInit {
   @Input('store') store = [];
+  @Input('filters') filters;
   constructor(protected events: EventsService) { }
 
   ngOnInit() {
@@ -16,6 +17,8 @@ export class StoredHighlightsComponent implements OnInit {
         this.store.push({text: event.text, color: event.color});
       }
     });
+
+    console.log(this.filters)
   }
 
 }

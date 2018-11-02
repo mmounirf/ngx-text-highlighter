@@ -1,3 +1,8 @@
-<ul>
-<li *ngFor="let item of store" [ngStyle]="{'background-color': item.color}">{{item.text}}</li>
-</ul>
+<div class="storage-wrapper">
+  <ul class="sotrage-filters">
+    <li *ngFor="let filter of filters" [ngStyle]="{'background-color': filter.color}"></li>
+  </ul>
+  <ul class="sotrage-list">
+    <li *ngFor="let item of store" [ngStyle]="{'background-color': item.color}">{{item.text}}</li>
+  </ul>
+</div>

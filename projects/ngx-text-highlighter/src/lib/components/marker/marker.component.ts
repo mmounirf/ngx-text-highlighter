@@ -7,11 +7,11 @@ import { EventsService } from '../../services/events.service';
   styleUrls: ['./marker.component.css']
 })
 export class MarkerComponent implements OnInit {
-  colors = ['#f44336', '#ffeb3b', '#4caf50'];
   positionX = 0;
   positionY = 0;
   visibility = 'hidden';
   @Input('markerStyle') markerStyle = 'fixed';
+  @Input('colors') colors;
   @ViewChild('floatingMarker') floatingMarker: any;
   constructor(protected events: EventsService) { }
 
