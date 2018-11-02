@@ -3,6 +3,10 @@ import { EventsService } from '../../services/events.service';
 export declare class MarkerComponent implements OnInit {
     protected events: EventsService;
     colors: string[];
+    positionX: number;
+    positionY: number;
+    visibility: string;
+    markerStyle: string;
     constructor(events: EventsService);
     ngOnInit(): void;
     mark(color: any): void;

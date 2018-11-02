@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'app';
 
   handleTextSelection($event) {
-    console.log($event);
+
   }
 }

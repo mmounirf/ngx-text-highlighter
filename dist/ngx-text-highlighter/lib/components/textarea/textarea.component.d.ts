@@ -1,15 +1,15 @@
-import { OnInit } from '@angular/core';
+import { OnInit, EventEmitter } from '@angular/core';
 import { EventsService } from '../../services/events.service';
-import { DomSanitizer } from '@angular/platform-browser';
 export declare class TextareaComponent implements OnInit {
-    protected events: EventsService;
-    private sanitizer;
-    constructor(events: EventsService, sanitizer: DomSanitizer);
-    content: string;
-    selection: string;
-    position: any;
+    private _document;
+    private events;
+    savedSelection: Range | null;
+    selectedText: string;
+    blur: EventEmitter<string>;
+    constructor(_document: any, events: EventsService);
     ngOnInit(): void;
-    handleSelection($event: MouseEvent): void;
-    handleBlur($event: any): void;
-    replaceAt(string: any, position: any, replace: any): any;
+    restoreSelection(): boolean;
+    marker(color: string, text: string): void;
+    onTextAreaBlur(): void;
+    onSelection($event: any): void;
 }

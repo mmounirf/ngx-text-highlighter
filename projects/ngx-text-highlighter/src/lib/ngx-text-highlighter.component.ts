@@ -4,7 +4,7 @@ import { EventsService } from './services/events.service';
 @Component({
   selector: 'th-container',
   template: `
-    <th-marker></th-marker>
+    <th-marker [markerStyle]="markerStyle"></th-marker>
     <th-textarea></th-textarea>
     <th-stored-highlights></th-stored-highlights>
   `,
@@ -12,7 +12,6 @@ import { EventsService } from './services/events.service';
 })
 export class NgxTextHighlighterComponent implements OnInit, OnDestroy {
   @Output() textSelection: EventEmitter<{}> = new EventEmitter();
-  // TODO // Implement floating marker
   @Input('markerStyle') markerStyle = 'fixed';
   constructor(protected events: EventsService) { }
 

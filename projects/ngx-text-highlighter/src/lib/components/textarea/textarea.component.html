@@ -1,8 +1,5 @@
-<div
-  class="textarea"
-  (mouseup)="handleSelection($event)"
-  contenteditable="true"
-  [innerHtml]="content | safeHtml"
-  (input)="$event.target.innerHtml"
-  (blur)="handleBlur($event)"
-></div>
+    <div class="textarea"
+        (mouseup)="onSelection($event)"
+        [attr.contenteditable]="true"
+        (blur)="onTextAreaBlur()">
+    </div>

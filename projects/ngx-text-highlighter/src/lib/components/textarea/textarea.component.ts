@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, EventEmitter, Output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { EventsService } from '../../services/events.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'th-textarea',
@@ -9,53 +9,81 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class TextareaComponent implements OnInit {
-  constructor(protected events: EventsService, private sanitizer: DomSanitizer) { }
-  content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet facilisis dui, a finibus dui. Donec dignissim, justo at placerat maximus, urna turpis viverra urna, at hendrerit dui sem sed quam. Donec tincidunt magna quis tortor dignissim, at condimentum turpis lacinia. Aenean id turpis sit amet lacus semper sollicitudin. Nullam gravida erat vitae posuere sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Fusce nec sapien sagittis, tincidunt tortor quis, ultricies magna. Nullam nulla erat, laoreet non neque et, bibendum ornare nisl. Aliquam nisl massa, lobortis non metus quis, hendrerit rutrum enim. Nullam in lorem ut diam varius rutrum eget consectetur est. Aliquam quis velit iaculis, vehicula lectus a, imperdiet arcu. In sodales dolor eu erat tincidunt, et cursus dui vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus sed congue tellus. Quisque pulvinar felis aliquam nunc ultrices ullamcorper. Proin eget lacus at massa ullamcorper suscipit. Sed bibendum purus lorem, at ornare est aliquet dictum. Nulla eleifend eros congue nulla luctus auctor. Donec malesuada consectetur vestibulum. Suspendisse ut neque ac risus eleifend tempus sit amet quis turpis. Praesent tincidunt bibendum egestas. Integer porta accumsan metus, nec finibus justo fermentum ac. Nulla facilisi. Pellentesque erat augue, congue nec est ac, bibendum congue libero. Maecenas venenatis vel lacus in mollis. Ut sollicitudin vel ipsum sit amet aliquet. Donec tincidunt tempus est a malesuada.';
-  selection = '';
-  position;
+  savedSelection: Range | null;
+  selectedText: string;
+
+  @Output() blur: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(@Inject (DOCUMENT) private _document: any, private events: EventsService) { }
+
   ngOnInit() {
-    this.events.listen().subscribe(event => {
-
-      switch (event.origin) {
-
-        case ('marker'):
-          if (this.selection) {
-            this.content = this.replaceAt(this.content, this.position, `<span style="background-color: ${event.color};">${this.selection}</span>`);
-          }
-        break;
-
-        case ('textarea'):
-          this.selection = event.selection.toString();
-          this.position = {starts: event.selection.anchorOffset, ends: event.selection.focusOffset};
-        break;
-
-        default:
-        break;
+    // Listen to events
+    this.events.listen().subscribe((event) => {
+      // Marker events
+      if (event.origin === 'marker' && event.type === 'highlight') {
+        // Highlight text
+        this.marker(event.color, this.selectedText);
       }
     });
   }
 
-
-  handleSelection($event: MouseEvent) {
-    const selection: Selection = $event.view.getSelection();
-    if (selection.type === 'Range') {
-      this.events.dispatch({
-          origin: 'textarea',
-          type: 'selection',
-          mouseEvent: $event,
-          selection: selection,
-        });
+  restoreSelection(): boolean {
+    if (this.savedSelection) {
+      if (window.getSelection) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(this.savedSelection);
+        return true;
+      } else if (this._document.getSelection) {
+        return true;
+      }
+    } else {
+      return false;
     }
   }
 
-  handleBlur($event) {
-    this.content = $event.target.innerHTML;
+  marker(color: string, text: string): void {
+    // We have a selection?
+    if (this.restoreSelection()) {
+      // Execute background color
+      this._document.execCommand('hiliteColor', false, color);
+      // Trigger stored highlights
+      this.events.dispatch({origin: 'textarea', type: 'store', color: color, text: text});
+    }
+  }
+  onTextAreaBlur() {
+    // Loses focus? Let the floating marker knows about it
+    this.events.dispatch({origin: 'textarea', type: 'blur'});
+    // Browser supports getSelection()?
+    if (window.getSelection) {
+      // Get selection
+      const selection = window.getSelection();
+      // Browser support range?
+      if (selection.getRangeAt && selection.rangeCount) {
+        // Get range and selected text
+        this.savedSelection = selection.getRangeAt(0);
+        this.selectedText = selection.toString();
+      }
+    } else if (this._document.getSelection && this._document.createRange) {
+      this.savedSelection = document.createRange();
+    } else {
+      this.savedSelection = null;
+    }
   }
 
-  // Replace string at specific position (native replace() method will just replace the first occurance)
-  replaceAt(string, position, replace) {
-    return string.substring(0, position.starts) + replace + string.substring(position.ends);
+  // Get selection before blur (for floating marker)
+  onSelection($event) {
+    const selection = window.getSelection();
+    if (selection.type === 'Range') {
+      this.events.dispatch({origin: 'textarea', type: 'selection', value: selection});
+    }
+
+    // Selection is not a range, user clicked inside user area to hide floating marker
+    if (selection.type !== 'Range') {
+      this.events.dispatch({origin: 'textarea', type: 'blur'});
+    }
   }
+
 
 }
 
