@@ -52,8 +52,6 @@ export class TextareaComponent implements OnInit {
     }
   }
   onTextAreaBlur() {
-    // Loses focus? Let the floating marker knows about it
-    this.events.dispatch({origin: 'textarea', type: 'blur'});
     // Browser supports getSelection()?
     if (window.getSelection) {
       // Get selection
@@ -69,6 +67,7 @@ export class TextareaComponent implements OnInit {
     } else {
       this.savedSelection = null;
     }
+
   }
 
   // Get selection before blur (for floating marker)
@@ -78,7 +77,7 @@ export class TextareaComponent implements OnInit {
       this.events.dispatch({origin: 'textarea', type: 'selection', value: selection});
     }
 
-    // Selection is not a range, user clicked inside user area to hide floating marker
+    // Selection is not a range, means the user just places caret in another place, let's let the floating marker knows about it
     if (selection.type !== 'Range') {
       this.events.dispatch({origin: 'textarea', type: 'blur'});
     }
