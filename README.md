@@ -1,6 +1,6 @@
 ## Text Highlighter
 
-Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color.
+Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color. Check it out live demo and play around with the options [here](#https://mmounirf.github.io/ngx-text-highlighter/)
 
 ### Table of Contents
 
@@ -8,6 +8,7 @@ Angular 5+ module for displaying editable textarea where you can highlight text 
 * [Usage](#usage)
 * [Options](#options)
 * [Example](#example)
+* [Demo](#https://mmounirf.github.io/ngx-text-highlighter/)
 
 ### Installation
 
@@ -17,7 +18,7 @@ npm install ngx-text-highlighter --save
 
 ### Usage
 
-In module add following:
+In your module add the following:
 ```
 import { NgxTextHighlighterModule } from 'ngx-text-highlighter';
 
@@ -28,7 +29,7 @@ import { NgxTextHighlighterModule } from 'ngx-text-highlighter';
 })
 ```
 
-In component add following:
+In your component add the following:
 ```
 <th-container></th-container>
 ```
@@ -37,8 +38,8 @@ In component add following:
 
 | Key | Description | Type | Default |
 | ----- | ----- | ----- | ----- |
-| [colors] | Set of marker colors | ```Array<string>``` | ['#f44336', '#ffeb3b', '#4caf50'] |
-| [markerStyle] | Marker Style, change marker appearance | ```string``` | ```'fixed'```
+| ```[colors]``` | Set of marker colors | ```Array<string>``` | ```['#f44336', '#ffeb3b', '#4caf50']``` |
+| ```[markerStyle]``` | Marker Style, changes marker appearance | ```string``` | ```'fixed'```
 
 ### Example
 
