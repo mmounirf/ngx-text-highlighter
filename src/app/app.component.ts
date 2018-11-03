@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   markerStyle = 'fixed';
   colors = [];
   color = '#000000';
-
+  isFloat = false;
   constructor(private cd: ChangeDetectorRef) {
 
   }
@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
   }
 
   changeMarkerStyle(value): void {
-    console.log(value)
-    value ? this.markerStyle = 'float' : this.markerStyle = 'fixed';
+    this.isFloat = !this.isFloat;
+    value ? this.markerStyle = 'fixed' : this.markerStyle = 'float';
   }
 
   addColor(color): void {

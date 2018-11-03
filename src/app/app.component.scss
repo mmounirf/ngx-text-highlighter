@@ -60,6 +60,7 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, span{
           background: #ddd;
           border-radius: 16px;
           transition: .3s;
+          cursor: pointer;
 
           &::after{
             content: '';
