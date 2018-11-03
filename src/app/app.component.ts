@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   changeMarkerStyle(value): void {
+    console.log(value)
     value ? this.markerStyle = 'float' : this.markerStyle = 'fixed';
   }
 
