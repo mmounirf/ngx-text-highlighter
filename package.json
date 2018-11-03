@@ -4,11 +4,27 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod ngx-text-highlighter",
+    "publish": "npm run build && cd dist/ngx-text-highlighter && npm publish",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-deploy": "git subtree push --prefix dist/ngx-text-highlighter-app origin gh-pages"
+    "publish-git": "npm run clean && npm run build && deploy-to-git",
+    "clean": "rm -fr build dist"
+
+  },
+  "config": {
+    "deployToGit": {
+      "repository": "git@github.com:mmounirf/ngx-text-highlighter.git",
+      "branch": "gh-pages",
+      "folder": "build",
+      "script": "ng build --base-href=/ngx-text-highlighter/ --deploy-url=/ngx-text-highlighter/ && cp -R dist/ngx-text-highlighter-app/* build",
+      "commit": "Publishing $npm_package_version",
+      "user": {
+        "name": "Mohamed Mounir",
+        "email": "m.mounir.f@gmail.com"
+      }
+    }
   },
   "private": true,
   "dependencies": {
@@ -35,6 +51,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "deploy-to-git": "^0.1.5",
     "gulp-gh-pages": "^0.5.4",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
