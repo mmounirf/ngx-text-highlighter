@@ -1,3 +1,7 @@
+[![npm version](https://badge.fury.io/js/ngx-text-highlighter.svg)](https://badge.fury.io/js/ngx-text-highlighter)
+[![Build Status](https://travis-ci.org/mmounirf/ngx-text-highlighter.svg?branch=master)](https://travis-ci.org/mmounirf/ngx-text-highlighter)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Text Highlighter
 
 Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color. Check it out live demo and play around with the options [here](https://mmounirf.github.io/ngx-text-highlighter/)
