@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StoredHighlightsComponent } from './stored-highlights.component';
+import { ColorFilterPipe } from '../../pipes/color-filter.pipe';
 
 describe('StoredHighlightsComponent', () => {
   let component: StoredHighlightsComponent;
@@ -8,7 +9,7 @@ describe('StoredHighlightsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StoredHighlightsComponent ]
+      declarations: [ StoredHighlightsComponent, ColorFilterPipe ]
     })
     .compileComponents();
   }));

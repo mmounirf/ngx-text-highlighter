@@ -8,7 +8,7 @@ export class ColorFilterPipe implements PipeTransform {
   // Items are sotred selections, args are selected filters
   transform(items: any[], args: any[]) {
     // If args are not defined or empty
-    if (args.length === 0 || !args) {
+    if (!args || args.length === 0) {
       // Return all items
       return items;
     } else {
