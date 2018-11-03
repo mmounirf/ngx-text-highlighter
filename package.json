@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git://github.com/mmounirf/ngx-text-highlighter.git"
   },
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/ISC"
+  },
   "keywords": [
     "angular2",
     "angular4",
