@@ -1,7 +1,7 @@
 [![npm version](https://badge.fury.io/js/ngx-text-highlighter.svg)](https://badge.fury.io/js/ngx-text-highlighter)
 [![GitHub release](https://img.shields.io/github/release/mmounirf/ngx-text-highlighter.svg)](https://github.com/mmounirf/ngx-text-highlighter/releases)
 [![Build Status](https://travis-ci.org/mmounirf/ngx-text-highlighter.svg?branch=master)](https://travis-ci.org/mmounirf/ngx-text-highlighter)
-[![GitHub issues](https://img.shields.io/github/release/mmounirf/ngx-text-highlighter.svg)](https://github.com/mmounirf/ngx-text-highlighter/issues)
+[![GitHub issues](https://img.shields.io/github/issues/mmounirf/ngx-text-highlighter.svg)](https://github.com/mmounirf/ngx-text-highlighter/issues)
 
 ## Text Highlighter
 
