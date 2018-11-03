@@ -1,8 +1,10 @@
 <div class="storage-wrapper">
-  <ul class="sotrage-filters">
-    <li *ngFor="let filter of filters" [ngStyle]="{'background-color': filter.color}"></li>
+  <ul class="storage-filters">
+    <li *ngFor="let filter of filters" [ngStyle]="{'background-color': filter}" [ngClass]="isSelected(filter) ? 'selected' : ''" (click)="setFilter(filter)"></li>
   </ul>
-  <ul class="sotrage-list">
-    <li *ngFor="let item of store" [ngStyle]="{'background-color': item.color}">{{item.text}}</li>
-  </ul>
+  <div class="storage-list">
+    <span *ngIf="(store | colorFilter:selectedFilters).length < 1 && store.length > 0">No items matches the selected filter</span>
+    <span *ngIf="store.length < 1">You've no highlighted items</span>
+    <p *ngFor="let item of store | colorFilter:selectedFilters" [ngStyle]="{'background-color': item.color}">{{item.text}}</p>
+  </div>
 </div>

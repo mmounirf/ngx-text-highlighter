@@ -9,6 +9,7 @@ import { EventsService } from '../../services/events.service';
 export class StoredHighlightsComponent implements OnInit {
   @Input('store') store = [];
   @Input('filters') filters;
+  selectedFilters: Array<string> = [];
   constructor(protected events: EventsService) { }
 
   ngOnInit() {
@@ -18,7 +19,15 @@ export class StoredHighlightsComponent implements OnInit {
       }
     });
 
-    console.log(this.filters)
+  }
+
+  setFilter(filter) {
+    // Check first if filter exists, if yes it will remove the filter if not it will push it to the selectedFilters
+    this.isSelected(filter) ? this.selectedFilters.splice(this.selectedFilters.indexOf(filter), 1) : this.selectedFilters.push(filter);
+  }
+
+  isSelected(filter) {
+    return this.selectedFilters.includes(filter);
   }
 
 }

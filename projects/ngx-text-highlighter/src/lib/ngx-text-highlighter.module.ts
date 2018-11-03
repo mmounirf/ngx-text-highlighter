@@ -4,8 +4,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { StoredHighlightsComponent } from './components/stored-highlights/stored-highlights.component';
 import { MarkerComponent } from './components/marker/marker.component';
 import { CommonModule } from '@angular/common';
-import { EventsService } from './services/events.service';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { ColorFilterPipe } from './pipes/color-filter.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +15,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     TextareaComponent,
     StoredHighlightsComponent,
     MarkerComponent,
-    SafeHtmlPipe
+    ColorFilterPipe
   ],
   exports: [NgxTextHighlighterComponent]
 })
