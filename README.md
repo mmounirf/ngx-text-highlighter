@@ -1,6 +1,6 @@
 ## Text Highlighter
 
-Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color. Check it out live demo and play around with the options [here](#https://mmounirf.github.io/ngx-text-highlighter/)
+Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color. Check it out live demo and play around with the options [here](https://mmounirf.github.io/ngx-text-highlighter/)
 
 ### Table of Contents
 
@@ -8,7 +8,7 @@ Angular 5+ module for displaying editable textarea where you can highlight text 
 * [Usage](#usage)
 * [Options](#options)
 * [Example](#example)
-* [Demo](#https://mmounirf.github.io/ngx-text-highlighter/)
+* [Demo](https://mmounirf.github.io/ngx-text-highlighter/)
 
 ### Installation
 
