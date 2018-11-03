@@ -8,11 +8,8 @@ cache:
   directories:
     - node_modules
 
-addons:
-  chrome: stable
-
 script:
   - npm run lint
-  - npm run test:headless
+  - npm run test
   - npm run e2e
   - npm run build
