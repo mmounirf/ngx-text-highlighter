@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, EventEmitter, Output, OnDestroy, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { EventsService } from '../../services/events.service';
 
@@ -13,7 +13,7 @@ export class TextareaComponent implements OnInit, OnDestroy  {
   selectedText: string;
 
   @Output() blur: EventEmitter<string> = new EventEmitter<string>();
-
+  @ViewChild('textarea') textarea: ElementRef;
   constructor(@Inject (DOCUMENT) private _document: any, private events: EventsService) { }
 
   ngOnInit() {
@@ -48,7 +48,9 @@ export class TextareaComponent implements OnInit, OnDestroy  {
       // Execute background color
       this._document.execCommand('hiliteColor', false, color);
       // Trigger stored highlights
-      this.events.dispatch({origin: 'textarea', type: 'store', color: color, text: text});
+      const selection = window.getSelection();
+      const selectionIndex = this.textarea.nativeElement.innerText.indexOf(selection.toString());
+      this.events.dispatch({origin: 'textarea', type: 'store', color: color, text: text, index: selectionIndex});
     }
   }
   onTextAreaBlur() {
@@ -81,6 +83,8 @@ export class TextareaComponent implements OnInit, OnDestroy  {
     if (selection.type !== 'Range') {
       this.events.dispatch({origin: 'textarea', type: 'blur'});
     }
+
+
   }
 
   ngOnDestroy() {

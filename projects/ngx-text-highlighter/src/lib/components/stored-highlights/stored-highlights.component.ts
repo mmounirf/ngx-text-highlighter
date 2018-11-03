@@ -15,7 +15,9 @@ export class StoredHighlightsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.events.listen().subscribe((event) => {
       if (event.origin === 'textarea' && event.type === 'store') {
-        this.store.push({text: event.text, color: event.color});
+        this.store.push({text: event.text, color: event.color, index: event.index});
+        // Sort array ascendingly by index value
+        this.store.sort((x, y) => x.index - y.index);
       }
     });
 

@@ -52,4 +52,8 @@ export class MarkerComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     this.events.listen().unsubscribe();
   }
+
+  setIndex(index) {
+
+  }
 }
