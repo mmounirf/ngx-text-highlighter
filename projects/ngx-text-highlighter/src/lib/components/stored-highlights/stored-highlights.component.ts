@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { EventsService } from '../../services/events.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { EventsService } from '../../services/events.service';
   templateUrl: './stored-highlights.component.html',
   styleUrls: ['./stored-highlights.component.css']
 })
-export class StoredHighlightsComponent implements OnInit {
+export class StoredHighlightsComponent implements OnInit, OnDestroy {
   @Input('store') store = [];
   @Input('filters') filters;
   selectedFilters: Array<string> = [];
@@ -28,6 +28,10 @@ export class StoredHighlightsComponent implements OnInit {
 
   isSelected(filter) {
     return this.selectedFilters.includes(filter);
+  }
+
+  ngOnDestroy() {
+    this.events.listen().unsubscribe();
   }
 
 }

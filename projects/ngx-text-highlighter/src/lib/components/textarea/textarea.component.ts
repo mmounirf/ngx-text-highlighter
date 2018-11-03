@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { EventsService } from '../../services/events.service';
 
@@ -8,7 +8,7 @@ import { EventsService } from '../../services/events.service';
   styleUrls: ['./textarea.component.css']
 })
 
-export class TextareaComponent implements OnInit {
+export class TextareaComponent implements OnInit, OnDestroy  {
   savedSelection: Range | null;
   selectedText: string;
 
@@ -83,7 +83,9 @@ export class TextareaComponent implements OnInit {
     }
   }
 
-
+  ngOnDestroy() {
+    this.events.listen().unsubscribe();
+  }
 }
 
 

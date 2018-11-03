@@ -1,6 +1,6 @@
-import { OnInit, EventEmitter } from '@angular/core';
+import { OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { EventsService } from '../../services/events.service';
-export declare class TextareaComponent implements OnInit {
+export declare class TextareaComponent implements OnInit, OnDestroy {
     private _document;
     private events;
     savedSelection: Range | null;
@@ -12,4 +12,5 @@ export declare class TextareaComponent implements OnInit {
     marker(color: string, text: string): void;
     onTextAreaBlur(): void;
     onSelection($event: any): void;
+    ngOnDestroy(): void;
 }

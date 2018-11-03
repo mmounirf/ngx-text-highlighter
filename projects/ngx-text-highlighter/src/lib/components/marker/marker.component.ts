@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { EventsService } from '../../services/events.service';
 
 @Component({
@@ -6,12 +6,12 @@ import { EventsService } from '../../services/events.service';
   templateUrl: './marker.component.html',
   styleUrls: ['./marker.component.css']
 })
-export class MarkerComponent implements OnInit {
+export class MarkerComponent implements OnInit, OnDestroy  {
   positionX = 0;
   positionY = 0;
   visibility = 'hidden';
   @Input('markerStyle') markerStyle = 'fixed';
-  @Input('colors') colors;
+  @Input('colors') colors = ['#f44336', '#ffeb3b', '#4caf50'];
   @ViewChild('floatingMarker') floatingMarker: any;
   constructor(protected events: EventsService) { }
 
@@ -24,7 +24,6 @@ export class MarkerComponent implements OnInit {
         // Selection width and height from range bounding rectangle
         const selectionWidth = event.value.getRangeAt(0).getBoundingClientRect().width;
         const xCenter = (parseInt(markerWidth, 0) - selectionWidth) / 2;
-
 
         this.positionX = event.value.getRangeAt(0).getBoundingClientRect().left - xCenter;
         // 64px = 4em (double the line height)
@@ -50,4 +49,7 @@ export class MarkerComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.events.listen().unsubscribe();
+  }
 }

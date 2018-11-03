@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+
 import { NgxTextHighlighterModule } from 'ngx-text-highlighter';
 
 @NgModule({
@@ -10,6 +12,7 @@ import { NgxTextHighlighterModule } from 'ngx-text-highlighter';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgxTextHighlighterModule
   ],
   providers: [],

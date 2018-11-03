@@ -1,9 +1,32 @@
-<th-container
-  (textSelection)="handleTextSelection($event)"
+<div class="header">
+  <h1>Ngx Text Highlighter</h1>
+  <p>V1.0 Demo</p>
+</div>
+<div class="container">
+  <div class="option-wrapper">
+    <div class="marker-style">
+      <h4>Marker Style</h4>
+      <p>
+        Marker or text highlighter, can be displayed in two ways, as a fixed toolbar at the top of the text area, or floating above the selected text, like medium sharer toolbar. Use <code>[markerStyle]</code> input providing either <code>'fixed'</code> or <code>'float'</code>> as string
+      </p>
+        <label class="switch-btn">
+            <span class="switch-btn-description">Fixed</span>
+            <input type="checkbox" class="switch-btn-input" [(ngModel)]="markerStyleInput" (change)="changeMarkerStyle(markerStyleInput)">
+            <span class="switch-btn-indicator"></span>
+            <span class="switch-btn-description">Float</span>
+          </label>
+    </div>
+  </div>
+  <div class="option-wrapper">
+      <div class="colors">
+        <h4>Marker Colors</h4>
+        <p>
+          By default text highlighter has 3 predefined colors to use for text highlighting (Red, Green and Blue), this can be extended by providing your own set of colors using <code>[color]</code> input. <code>[color]</code> accepts value of array of strings.
+        </p>
+        <input type="color" class="color-picker" name="color" [value]="color"  [(ngModel)]="color" (change)="addColor(color)" />
+      </div>
+    </div>
 
->
-</th-container>
+  <th-container [colors]="colors" [markerStyle]="markerStyle"></th-container>
+</div>
 
-<!--
-[markerStyle]="'float'"
-[colors]="['#2196f3', '#9c27b0', '#78909c']" -->

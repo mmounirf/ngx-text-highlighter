@@ -14,9 +14,12 @@ export class NgxTextHighlighterComponent implements OnInit, OnDestroy {
   @Output() textSelection: EventEmitter<{}> = new EventEmitter();
   @Input('markerStyle') markerStyle = 'fixed';
   @Input('colors') colors = ['#f44336', '#ffeb3b', '#4caf50'];
-  constructor(protected events: EventsService) { }
+  constructor(protected events: EventsService) {}
 
   ngOnInit() {
+    if (this.colors.length < 1) {
+      this.colors = ['#f44336', '#ffeb3b', '#4caf50'];
+    }
     // Listens to events from child components
     this.events.listen().subscribe(event => {
       // Check event origin (which component dispatched this event)
