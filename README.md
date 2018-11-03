@@ -1,27 +1,47 @@
-# NgxTextHighlighterApp
+## Text Highlighter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color.
 
-## Development server
+### Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* [Installation](#installation)
+* [Usage](#usage)
+* [Options](#options)
+* [Example](#example)
 
-## Code scaffolding
+### Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install ngx-text-highlighter --save
+```
 
-## Build
+### Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+In module add following:
+```
+import { NgxTextHighlighterModule } from 'ngx-text-highlighter';
 
-## Running unit tests
+@NgModule({
+  imports: [
+    NgxTextHighlighterModule
+  ]
+})
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+In component add following:
+```
+<th-container></th-container>
+```
 
-## Running end-to-end tests
+### Options
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| Key | Description | Type | Default |
+| ----- | ----- | ----- | ----- |
+| [colors] | Set of marker colors | ```Array<string>``` | ['#f44336', '#ffeb3b', '#4caf50'] |
+| [markerStyle] | Marker Style, change marker appearance | ```string``` | ```'fixed'```
 
-## Further help
+### Example
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+<th-container [colors]="['#e22525', '#25b2e2', '#3ee225','#e225d']" [markerStyle]="'float'"></th-container>
+```
