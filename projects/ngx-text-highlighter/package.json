@@ -1,6 +1,6 @@
 {
   "name": "ngx-text-highlighter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular 5+ module for displaying editable textarea where you can highlight text selections and filter your previous selection based on highlighting color.",
   "homepage": "https://github.com/mmounirf/ngx-text-highlighter",
   "author": {
